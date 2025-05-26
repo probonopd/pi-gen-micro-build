@@ -17,7 +17,7 @@ jobs:
       - name: Set up dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git qemu-user-static debootstrap kpartx dosfstools debhelper devscripts build-essential
+          sudo apt-get install -y git qemu-user-static debootstrap kpartx dosfstools debhelper devscripts build-essential rpi-make-boot-image
 
       - name: Run build.sh
         run: sh -ex ./build.sh
