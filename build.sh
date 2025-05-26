@@ -19,8 +19,8 @@ sudo dpkg --force-depends -i "$DEB_PKG"
 
 # Create an image using pi-gen-micro (example: fastboot configuration)
 WORKDIR=$(mktemp -d)
-pushd "$WORKDIR"
+cd "$WORKDIR"
 sudo pi-gen-micro fastboot
-popd
+cd -
 
 echo "Image build complete! Check the $WORKDIR directory for output."
