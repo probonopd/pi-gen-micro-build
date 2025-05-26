@@ -17,7 +17,13 @@ jobs:
       - name: Set up dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git qemu-user-static debootstrap kpartx dosfstools debhelper devscripts build-essential rpi-make-boot-image
+          sudo apt-get install -y git qemu-user-static debootstrap kpartx dosfstools debhelper devscripts build-essential
+          # Add repository and install the missing rpi-make-boot-image package
+          # Probably not the right way to do it since we are runnong on Ubuntu and not on Bookworm
+          echo "deb http://archive.raspberrypi.org/debian/ bookworm main" | sudo tee /etc/apt/sources.list.d/raspi.list
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 82B129927FA3303E
+          sudo apt-get update
+          sudo apt-get install -y rpi-make-boot-image
 
       - name: Run build.sh
         run: sh -ex ./build.sh
